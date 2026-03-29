@@ -15,9 +15,11 @@ export default function RiverIsland() {
     <section id="island" ref={ref} className="relative overflow-hidden">
       {/* Full-width immersive island section */}
       <div className="relative py-24 md:py-32 lg:py-40">
-        {/* Background: river blue gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-river-dark/90 via-blue-river/70 to-blue-river-dark/90" />
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10C25 0 25 20 50 10C75 0 75 20 100 10' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E")`, backgroundSize: '100px 20px' }} />
+        {/* Background: real Godavari river photo */}
+        <div className="absolute inset-0">
+          <img src="/images/godavari-river.jpg" alt="" className="w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-river-dark/85 via-blue-river-dark/70 to-blue-river-dark/85" />
+        </div>
 
         {/* Wave top */}
         <div className="absolute top-0 left-0 right-0 -translate-y-[98%]">
