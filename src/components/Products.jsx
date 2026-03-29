@@ -20,13 +20,14 @@ const productTabs = [
     key: 'ghats',
     label: '⛰️ Eastern Ghats',
     sublabel: 'Sourced from tribal partners',
+    intro: 'We partner with tribal communities in the Eastern Ghats — sourcing rare, wild, ancient foods that support livelihoods and protect forests.',
     products: [
-      { name: 'Wild Forest Honey', desc: 'Raw, unprocessed, from ancient tribal forests', tag: 'Seasonal', emoji: '🍯' },
-      { name: 'Black Pepper', desc: 'Hand-picked wild pepper, sun-dried traditionally', tag: 'Seasonal', emoji: '⚫' },
-      { name: 'Turmeric & Spices', desc: 'High-curcumin turmeric from mineral-rich red soil', tag: 'Seasonal', emoji: '🟡' },
-      { name: 'Coffee Beans', desc: 'Shade-grown, single-origin, slow-roasted', tag: 'Year-round', emoji: '☕' },
-      { name: 'Millets & Grains', desc: 'Ragi, jowar, little millet — ancient tribal grains', tag: 'Seasonal', emoji: '🌾' },
-      { name: 'Herbal & Medicinal', desc: 'Rare herbs, dried flowers, roots — sustainably foraged', tag: 'Limited', emoji: '🌿' },
+      { name: 'Wild Forest Honey', desc: 'Collected by tribal communities from ancient forests. Raw, unprocessed, full of enzymes', tag: 'Seasonal', emoji: '🍯' },
+      { name: 'Black Pepper', desc: 'Hand-picked wild pepper from highland plantations, sun-dried the traditional way', tag: 'Seasonal', emoji: '⚫' },
+      { name: 'Turmeric & Spices', desc: 'High-curcumin turmeric grown in mineral-rich red soil valleys of the ghats', tag: 'Seasonal', emoji: '🟡' },
+      { name: 'Coffee Beans', desc: 'Shade-grown from small tribal estates, slow-roasted, single-origin, rich and smooth', tag: 'Year-round', emoji: '☕' },
+      { name: 'Millets & Grains', desc: 'Ragi, jowar, little millet — ancient grains grown using centuries-old methods', tag: 'Seasonal', emoji: '🌾' },
+      { name: 'Herbal & Medicinal', desc: 'Rare herbs, dried flowers, medicinal roots — sustainably foraged from pristine forests', tag: 'Limited', emoji: '🌿' },
     ],
   },
   {
@@ -77,6 +78,14 @@ export default function Products() {
         {/* Tab content */}
         <AnimatePresence mode="wait">
           <motion.div key={activeTab} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
+            {/* Intro text for ghats tab */}
+            {active.intro && (
+              <div className="mb-6 flex items-center gap-4 bg-amber-500/8 rounded-2xl p-5 border border-amber-500/15">
+                <img src="/images/eastern-ghats.webp" alt="" className="w-16 h-16 rounded-xl object-cover shrink-0 hidden sm:block" />
+                <p className="text-brown-light text-sm leading-relaxed"><strong className="text-brown-earth">Beyond our island farm:</strong> {active.intro}</p>
+              </div>
+            )}
+
             {active.seasonal ? (
               /* Seasonal calendar */
               <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm">
