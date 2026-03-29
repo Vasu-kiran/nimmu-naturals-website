@@ -1,0 +1,33 @@
+import { useInView } from 'framer-motion'
+import { useRef } from 'react'
+
+export function useScrollAnimation(threshold = 0.2) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: threshold })
+  return { ref, isInView }
+}
+
+export const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+}
+
+export const fadeInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0 },
+}
+
+export const fadeInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0 },
+}
+
+export const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+}
+
+export const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 },
+}
