@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
   { name: 'Home', href: '#hero' },
-  { name: 'Our Story', href: '#story' },
-  { name: 'The Island', href: '#island' },
-  { name: 'Farm Life', href: '#farm-day' },
+  { name: 'Story', href: '#story' },
+  { name: 'Island', href: '#island' },
+  { name: 'Farm', href: '#farm-day' },
+  { name: 'Promise', href: '#philosophy' },
   { name: 'Products', href: '#products' },
   { name: 'Gallery', href: '#gallery' },
   { name: 'Contact', href: '#contact' },

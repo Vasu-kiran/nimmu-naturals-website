@@ -1,31 +1,22 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBadges from './components/TrustBadges'
-import MeetFarmer from './components/MeetFarmer'
 import OurStory from './components/OurStory'
 import RiverIsland from './components/RiverIsland'
 import FarmDay from './components/FarmDay'
-import Philosophy from './components/Philosophy'
-import WhatWeDontUse from './components/WhatWeDontUse'
+import OurPromise from './components/OurPromise'
 import SoilToSoul from './components/SoilToSoul'
-import WhyChooseUs from './components/WhyChooseUs'
-import ProductShowcase from './components/ProductShowcase'
+import Products from './components/Products'
 import EasternGhats from './components/EasternGhats'
-import SeasonalAvailability from './components/SeasonalAvailability'
-import Traceability from './components/Traceability'
-import HowItWorks from './components/HowItWorks'
+import FarmToHome from './components/FarmToHome'
 import Gallery from './components/Gallery'
-import VisitFarm from './components/VisitFarm'
 import Testimonials from './components/Testimonials'
-import WhyOrganic from './components/WhyOrganic'
 import JoinCommunity from './components/JoinCommunity'
-import Delivery from './components/Delivery'
-import Contact from './components/Contact'
+import GetInTouch from './components/GetInTouch'
 import FAQ from './components/FAQ'
 import EmotionalClosing from './components/EmotionalClosing'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
-import { OrganicDivider } from './components/SectionDivider'
 
 function App() {
   return (
@@ -33,30 +24,18 @@ function App() {
       <Navbar />
       <Hero />
       <TrustBadges />
-      <MeetFarmer />
-      <OrganicDivider />
       <OurStory />
       <RiverIsland />
       <FarmDay />
-      <OrganicDivider />
-      <Philosophy />
-      <WhatWeDontUse />
+      <OurPromise />
       <SoilToSoul />
-      <WhyChooseUs />
-      <OrganicDivider />
-      <ProductShowcase />
+      <Products />
       <EasternGhats />
-      <SeasonalAvailability />
-      <Traceability />
-      <HowItWorks />
-      <OrganicDivider />
+      <FarmToHome />
       <Gallery />
-      <VisitFarm />
       <Testimonials />
-      <WhyOrganic />
       <JoinCommunity />
-      <Delivery />
-      <Contact />
+      <GetInTouch />
       <FAQ />
       <EmotionalClosing />
       <Footer />
