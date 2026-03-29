@@ -48,8 +48,18 @@ export default function FarmToHome() {
             </motion.a>
           </motion.div>
 
-          {/* Right: Traceability card */}
-          <motion.div variants={fadeInRight} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.8, delay: 0.2 }}>
+          {/* Right: Real product + Traceability */}
+          <motion.div variants={fadeInRight} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.8, delay: 0.2 }} className="space-y-6">
+            {/* Real product photos */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-2xl overflow-hidden shadow-md aspect-square">
+                <img src="/images/honey-jar.jpeg" alt="Nimmu Naturals branded honey jar" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-md aspect-square">
+                <img src="/images/farm-stall.jpeg" alt="Nimmu Naturals farm stall with products" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              </div>
+            </div>
+
             <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-green-deep/10">
               <div className="bg-green-deep px-6 py-5">
                 <div className="flex items-center gap-3">
@@ -88,3 +98,4 @@ export default function FarmToHome() {
     </section>
   )
 }
+
