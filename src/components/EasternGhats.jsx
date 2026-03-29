@@ -99,8 +99,11 @@ export default function EasternGhats() {
 
   return (
     <section ref={ref} className="relative overflow-hidden">
-      {/* Mountain-inspired background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-deep via-[#2d5016] to-brown-earth" />
+      {/* Mountain-inspired background with real photo */}
+      <div className="absolute inset-0">
+        <img src="/images/turmeric.jpeg" alt="" className="w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-deep/92 via-[#2d5016]/90 to-brown-earth/92" />
+      </div>
 
       {/* Mountain silhouettes */}
       <div className="absolute bottom-0 left-0 right-0">

@@ -3,16 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollAnimation, fadeInUp, scaleIn } from './useScrollAnimation'
 
 const galleryItems = [
-  { id: 1, title: 'Paddy Fields at Sunrise', category: 'farm', aspect: 'landscape', color: 'from-amber-200/40 to-green-200/40', icon: '🌾', desc: 'Golden paddy fields glowing in the early morning light' },
-  { id: 2, title: 'Cows Grazing Free', category: 'animals', aspect: 'portrait', color: 'from-green-200/40 to-emerald-200/40', icon: '🐄', desc: 'Our cows roaming freely on green pastures' },
-  { id: 3, title: 'River Godavari View', category: 'nature', aspect: 'landscape', color: 'from-blue-200/40 to-cyan-200/40', icon: '🌊', desc: 'The sacred river surrounding our island farm' },
-  { id: 4, title: 'Organic Harvest', category: 'farm', aspect: 'portrait', color: 'from-orange-200/40 to-amber-200/40', icon: '🧺', desc: 'Fresh harvest straight from the field' },
-  { id: 5, title: 'Ducks in Paddy', category: 'animals', aspect: 'landscape', color: 'from-teal-200/40 to-blue-200/40', icon: '🦆', desc: 'Our ducks working their magic in the rice fields' },
-  { id: 6, title: 'Eastern Ghats Forest', category: 'nature', aspect: 'portrait', color: 'from-green-300/40 to-emerald-300/40', icon: '🌲', desc: 'Pristine forests of the Eastern Ghats' },
-  { id: 7, title: 'Farm Family', category: 'people', aspect: 'portrait', color: 'from-amber-100/40 to-orange-100/40', icon: '👨‍🌾', desc: 'The hands that grow your food' },
-  { id: 8, title: 'Fresh Vegetables', category: 'farm', aspect: 'landscape', color: 'from-green-100/40 to-lime-100/40', icon: '🥬', desc: 'Just-picked organic vegetables' },
-  { id: 9, title: 'Sunset at Farm', category: 'nature', aspect: 'landscape', color: 'from-orange-300/40 to-red-200/40', icon: '🌅', desc: 'Golden hour over the Godavari delta' },
-  { id: 10, title: 'Tribal Honey Collection', category: 'people', aspect: 'portrait', color: 'from-yellow-200/40 to-amber-200/40', icon: '🍯', desc: 'Our tribal partners collecting wild honey' },
+  { id: 1, title: 'Wild Honeycomb', category: 'farm', aspect: 'portrait', color: 'from-amber-200/40 to-yellow-200/40', icon: '🍯', desc: 'Fresh honeycomb from our coconut groves — raw, pure, alive', image: '/images/honey.jpeg' },
+  { id: 2, title: 'Cow Grazing Free', category: 'animals', aspect: 'portrait', color: 'from-green-200/40 to-emerald-200/40', icon: '🐄', desc: 'Our cows roaming freely on the lush green island pastures', image: '/images/cow-grazing.jpeg' },
+  { id: 3, title: 'The Farmer & His Cow', category: 'people', aspect: 'portrait', color: 'from-green-100/40 to-amber-100/40', icon: '👨‍🌾', desc: 'The bond between farmer and animal — this is real farming', image: '/images/farmer-with-cow.jpeg' },
+  { id: 4, title: 'Fresh Turmeric Harvest', category: 'farm', aspect: 'portrait', color: 'from-yellow-200/40 to-orange-200/40', icon: '🟡', desc: 'Freshly harvested organic turmeric — vibrant, powerful, pure', image: '/images/turmeric.jpeg' },
+  { id: 5, title: 'River Godavari View', category: 'nature', aspect: 'landscape', color: 'from-blue-200/40 to-cyan-200/40', icon: '🌊', desc: 'The sacred river surrounding our island farm' },
+  { id: 6, title: 'Ducks in Paddy', category: 'animals', aspect: 'landscape', color: 'from-teal-200/40 to-blue-200/40', icon: '🦆', desc: 'Our ducks working their magic in the rice fields' },
+  { id: 7, title: 'Paddy Fields', category: 'farm', aspect: 'landscape', color: 'from-amber-200/40 to-green-200/40', icon: '🌾', desc: 'Golden paddy fields glowing in the morning light' },
+  { id: 8, title: 'Sunset at Farm', category: 'nature', aspect: 'landscape', color: 'from-orange-300/40 to-red-200/40', icon: '🌅', desc: 'Golden hour over the Godavari delta' },
+  { id: 9, title: 'Fresh Vegetables', category: 'farm', aspect: 'landscape', color: 'from-green-100/40 to-lime-100/40', icon: '🥬', desc: 'Just-picked organic vegetables' },
+  { id: 10, title: 'Eastern Ghats Forest', category: 'nature', aspect: 'portrait', color: 'from-green-300/40 to-emerald-300/40', icon: '🌲', desc: 'Pristine forests of the Eastern Ghats' },
   { id: 11, title: 'Hens Free Range', category: 'animals', aspect: 'landscape', color: 'from-red-100/40 to-orange-100/40', icon: '🐓', desc: 'Country hens pecking around the farm' },
   { id: 12, title: 'Packing with Care', category: 'people', aspect: 'landscape', color: 'from-brown-100/40 to-amber-100/40', icon: '📦', desc: 'Every order packed by hand with love' },
 ]
@@ -79,20 +79,25 @@ export default function Gallery() {
                 className={`${item.aspect === 'portrait' ? 'row-span-2' : ''} cursor-pointer group`}
                 onClick={() => setSelectedItem(item)}
               >
-                <div className={`bg-gradient-to-br ${item.color} rounded-2xl h-full min-h-[180px] ${item.aspect === 'portrait' ? 'min-h-[380px]' : 'min-h-[180px]'} flex flex-col items-center justify-center p-6 relative overflow-hidden border border-gray-100 group-hover:border-green-deep/20 group-hover:shadow-xl transition-all duration-500`}>
-                  {/* Placeholder content */}
-                  <span className="text-5xl mb-3 group-hover:scale-125 transition-transform duration-500">{item.icon}</span>
-                  <p className="text-brown-earth/60 text-xs font-medium text-center">{item.title}</p>
+                <div className={`rounded-2xl h-full min-h-[180px] ${item.aspect === 'portrait' ? 'min-h-[380px]' : 'min-h-[180px]'} relative overflow-hidden border border-gray-100 group-hover:border-green-deep/20 group-hover:shadow-xl transition-all duration-500 ${item.image ? '' : `bg-gradient-to-br ${item.color} flex flex-col items-center justify-center p-6`}`}>
+                  {item.image ? (
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                  ) : (
+                    <>
+                      <span className="text-5xl mb-3 group-hover:scale-125 transition-transform duration-500">{item.icon}</span>
+                      <p className="text-brown-earth/60 text-xs font-medium text-center">{item.title}</p>
+                    </>
+                  )}
 
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-green-deep/0 group-hover:bg-green-deep/80 transition-all duration-500 flex items-end rounded-2xl">
+                  <div className="absolute inset-0 bg-green-deep/0 group-hover:bg-green-deep/70 transition-all duration-500 flex items-end rounded-2xl">
                     <div className="p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                       <p className="text-white font-semibold text-sm">{item.title}</p>
                       <p className="text-white/70 text-xs mt-1">{item.desc}</p>
                     </div>
                   </div>
 
-                  {/* Camera icon on hover */}
+                  {/* Zoom icon on hover */}
                   <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/0 group-hover:bg-white/20 flex items-center justify-center transition-all duration-500 opacity-0 group-hover:opacity-100">
                     <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                   </div>
@@ -130,8 +135,12 @@ export default function Gallery() {
               className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl"
               onClick={e => e.stopPropagation()}
             >
-              <div className={`bg-gradient-to-br ${selectedItem.color} h-64 flex items-center justify-center`}>
-                <span className="text-8xl">{selectedItem.icon}</span>
+              <div className={`${selectedItem.image ? 'h-80' : 'h-64'} flex items-center justify-center overflow-hidden ${selectedItem.image ? '' : `bg-gradient-to-br ${selectedItem.color}`}`}>
+                {selectedItem.image ? (
+                  <img src={selectedItem.image} alt={selectedItem.title} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-8xl">{selectedItem.icon}</span>
+                )}
               </div>
               <div className="p-6">
                 <span className="text-xs font-semibold text-green-deep uppercase tracking-wider">{selectedItem.category}</span>

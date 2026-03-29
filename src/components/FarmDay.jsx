@@ -79,7 +79,11 @@ export default function FarmDay() {
   const { ref, isInView } = useScrollAnimation(0.1)
 
   return (
-    <section id="farm-day" ref={ref} className="px-6 md:px-16 lg:px-24 py-20 md:py-28 bg-beige-light">
+    <section id="farm-day" ref={ref} className="px-6 md:px-16 lg:px-24 py-20 md:py-28 bg-beige-light relative overflow-hidden">
+      {/* Background farm photo with heavy overlay */}
+      <div className="absolute inset-0">
+        <img src="/images/cow-grazing.jpeg" alt="" className="w-full h-full object-cover opacity-[0.06]" loading="lazy" />
+      </div>
       <div className="max-w-5xl mx-auto">
         <motion.div variants={fadeInUp} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.8 }} className="text-center mb-16">
           <span className="text-green-deep text-sm font-semibold tracking-wider uppercase mb-4 block">Life at the Farm</span>

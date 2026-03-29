@@ -37,17 +37,16 @@ export default function OurStory() {
           {/* Farmer image */}
           <motion.div variants={fadeInLeft} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.8 }} className="lg:col-span-2">
             <div className="relative">
-              <div className="bg-gradient-to-br from-green-deep/20 to-brown-earth/20 rounded-3xl aspect-[4/5] flex items-center justify-center">
-                <div className="text-center p-8">
-                  <svg className="w-20 h-20 mx-auto mb-3 text-green-deep/40" viewBox="0 0 100 100" fill="none">
-                    <circle cx="50" cy="35" r="18" stroke="currentColor" strokeWidth="3"/>
-                    <path d="M20 85C20 65 35 52 50 52C65 52 80 65 80 85" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-                    <path d="M40 20C40 20 45 10 50 10C55 10 60 20 60 20" stroke="currentColor" strokeWidth="2" opacity="0.5"/>
-                  </svg>
-                  <p className="text-brown-earth/50 text-sm">Farmer / Family Photo</p>
-                </div>
+              <div className="rounded-3xl aspect-[4/5] overflow-hidden shadow-xl">
+                <img
+                  src="/images/farmer-with-cow.jpeg"
+                  alt="Nimmu Naturals farmer with cow on the island farm"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
               </div>
               <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-green-deep/10 rounded-full -z-10" />
+              <div className="absolute -top-3 -left-3 w-14 h-14 bg-brown-earth/10 rounded-full -z-10" />
             </div>
           </motion.div>
 
