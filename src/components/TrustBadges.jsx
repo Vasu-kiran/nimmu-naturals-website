@@ -3,6 +3,8 @@ import { useScrollAnimation } from './useScrollAnimation'
 
 const badges = [
   { label: '100% Chemical Free', icon: '🧪', sublabel: 'Zero chemicals ever' },
+  { label: 'Lab Tested', icon: '🔬', sublabel: 'Verified pure & safe' },
+  { label: 'Pesticide Residue Free', icon: '🛡️', sublabel: 'Zero residue guaranteed' },
   { label: 'River Island Farm', icon: '🏝️', sublabel: 'Naturally protected' },
   { label: 'Eastern Ghats Sourced', icon: '⛰️', sublabel: 'Tribal partnerships' },
   { label: 'Farm Direct', icon: '🚜', sublabel: 'No middlemen' },
