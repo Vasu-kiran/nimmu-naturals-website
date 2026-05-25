@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import { useScrollAnimation, fadeInUp, scaleIn } from './useScrollAnimation'
 
 const islandFeatures = [
-  { title: 'Natural Isolation', desc: 'Surrounded by the Godavari, our land is naturally shielded from chemical runoff of neighbouring farms.', icon: '🏝️' },
-  { title: 'Fertile Delta Soil', desc: 'River sediment creates the richest alluvial soil — no artificial fertilizers could ever match nature\'s gift.', icon: '🌊' },
-  { title: 'Unique Microclimate', desc: 'The river keeps temperatures mild and humidity perfect — ideal conditions for organic growth year-round.', icon: '🌤️' },
-  { title: 'Pure Water Source', desc: 'Our crops drink straight from the Godavari — the same sacred river that has nourished this land for millennia.', icon: '💧' },
+  { title: 'Natural Isolation', desc: 'Surrounded by the Godavari — shielded from synthetic runoff.', icon: '🏝️' },
+  { title: 'Fertile Delta Soil', desc: 'Rich alluvial soil — no artificial fertilizers needed.', icon: '🌊' },
+  { title: 'Mild Microclimate', desc: 'Perfect temperature and humidity, year-round.', icon: '🌤️' },
+  { title: 'Pure River Water', desc: 'Our crops drink straight from the sacred Godavari.', icon: '💧' },
 ]
 
 export default function RiverIsland() {
@@ -39,11 +39,11 @@ export default function RiverIsland() {
             </motion.div>
             <span className="text-blue-200 text-sm font-semibold tracking-[0.3em] uppercase mb-4 block">Our Unique Location</span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
-              A Farm Like No Other —
-              <br /><span className="text-blue-200">An Island in the Godavari</span>
+              An Organic Farm
+              <br /><span className="text-blue-200">on an Island in the Godavari</span>
             </h2>
-            <p className="text-white/75 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-              Imagine an organic farm completely surrounded by the sacred River Godavari — naturally isolated from the chemical world, nourished by the purest water, blessed with the richest delta soil.
+            <p className="text-white/75 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+              Surrounded by sacred river water. Naturally isolated. Truly organic.
             </p>
           </motion.div>
 
@@ -104,6 +104,35 @@ export default function RiverIsland() {
                 </g>
               ))}
 
+              {/* Flying macaw over the island */}
+              <g transform="translate(550, 140)">
+                {/* Body */}
+                <ellipse cx="0" cy="0" rx="12" ry="8" fill="#E53935" transform="rotate(-15)"/>
+                {/* Wing spread */}
+                <path d="M-5 -5 Q-25 -30 -40 -25 Q-20 -18 -8 -8Z" fill="#1B5E20" opacity="0.9"/>
+                <path d="M-5 -5 Q-20 -35 -35 -32 Q-18 -22 -6 -10Z" fill="#2E7D32" opacity="0.7"/>
+                <path d="M5 3 Q25 -20 40 -18 Q22 -10 8 -2Z" fill="#1B5E20" opacity="0.9"/>
+                <path d="M5 3 Q22 -25 38 -24 Q20 -14 6 -4Z" fill="#2E7D32" opacity="0.7"/>
+                {/* Tail */}
+                <path d="M-10 5 Q-30 15 -38 25 Q-28 18 -18 12 Q-28 22 -35 30 Q-25 20 -12 8Z" fill="#FDD835"/>
+                <path d="M-10 5 Q-25 18 -32 28 Q-22 18 -10 8Z" fill="#1565C0" opacity="0.8"/>
+                {/* Head */}
+                <circle cx="12" cy="-4" r="6" fill="#E53935"/>
+                <circle cx="14" cy="-5" r="1.5" fill="white"/>
+                <circle cx="14.5" cy="-5" r="0.8" fill="#1a1a1a"/>
+                {/* Beak */}
+                <path d="M17 -4 Q22 -6 21 -3 Q20 -1 17 -2Z" fill="#5D4037"/>
+              </g>
+
+              {/* Second macaw - smaller, in background */}
+              <g transform="translate(620, 170) scale(0.6)">
+                <ellipse cx="0" cy="0" rx="12" ry="8" fill="#E53935" transform="rotate(-10)" opacity="0.7"/>
+                <path d="M-5 -5 Q-25 -30 -40 -25 Q-20 -18 -8 -8Z" fill="#1B5E20" opacity="0.6"/>
+                <path d="M5 3 Q25 -20 40 -18 Q22 -10 8 -2Z" fill="#1B5E20" opacity="0.6"/>
+                <path d="M-10 5 Q-30 15 -38 25 Q-25 20 -12 8Z" fill="#FDD835" opacity="0.6"/>
+                <circle cx="12" cy="-4" r="6" fill="#E53935" opacity="0.7"/>
+              </g>
+
               {/* Nimmu Naturals label */}
               <g>
                 <rect x="375" y="310" width="150" height="28" rx="14" fill="white" opacity="0.2"/>
@@ -128,13 +157,13 @@ export default function RiverIsland() {
           <motion.div variants={fadeInUp} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center mb-16">
             <p className="text-2xl md:text-3xl lg:text-4xl text-white font-light italic leading-snug max-w-3xl mx-auto">
-              "Where the river wraps around the land like a mother's embrace —
+              "Where the river wraps the land,
               <span className="text-blue-200 font-medium"> that's where your food grows.</span>"
             </p>
           </motion.div>
 
           {/* Feature cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {islandFeatures.map((item, index) => (
               <motion.div
                 key={item.title}
@@ -150,6 +179,27 @@ export default function RiverIsland() {
               </motion.div>
             ))}
           </div>
+
+          {/* Zero chemicals banner */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="bg-white/5 backdrop-blur-sm rounded-3xl border border-white/20 px-6 py-6 md:px-10 md:py-8"
+          >
+            <p className="text-center text-blue-200 text-xs font-semibold tracking-[0.3em] uppercase mb-5">Grown without these</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {['Synthetic Pesticides', 'Synthetic Fertilizers', 'Growth Hormones', 'Artificial Additives'].map((item) => (
+                <div key={item} className="flex items-center gap-2 md:gap-3 justify-center">
+                  <span className="w-8 h-8 md:w-10 md:h-10 shrink-0 rounded-full bg-red-500/25 border border-red-300/40 flex items-center justify-center">
+                    <svg className="w-4 h-4 md:w-5 md:h-5 text-red-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12"/></svg>
+                  </span>
+                  <p className="text-white font-semibold text-sm md:text-base">{item}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import MacawLogo from './MacawLogo'
+import { WHATSAPP_URL } from '../config/contact'
 
 const navLinks = [
   { name: 'Home', href: '#hero' },
-  { name: 'Story', href: '#story' },
   { name: 'Island', href: '#island' },
-  { name: 'Farm', href: '#farm-day' },
-  { name: 'Promise', href: '#philosophy' },
   { name: 'Products', href: '#products' },
   { name: 'Gallery', href: '#gallery' },
   { name: 'Contact', href: '#contact' },
@@ -57,14 +56,17 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#hero" className="flex items-center gap-2">
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${scrolled ? 'bg-green-deep text-white' : 'bg-white/20 text-white'} transition-colors duration-300`}>
-              N
+          <a href="#hero" className="flex items-center gap-2 group">
+            <MacawLogo size={36} variant={scrolled ? 'color' : 'light'} />
+            <div className="flex flex-col leading-none">
+              <span className="text-xl md:text-2xl font-bold font-[family-name:var(--font-heading)] tracking-tight">
+                <span className={scrolled ? 'text-green-deep' : 'text-white'}>Nimmu</span>
+                <span className={scrolled ? 'text-brown-earth' : 'text-beige'}> Naturals</span>
+              </span>
+              <span className={`text-[7px] md:text-[8px] tracking-[0.2em] uppercase font-medium transition-colors duration-300 ${scrolled ? 'text-brown-light/50' : 'text-white/40'}`}>
+                Live long, live natural
+              </span>
             </div>
-            <span className="text-xl md:text-2xl font-bold font-[family-name:var(--font-heading)]">
-              <span className={scrolled ? 'text-green-deep' : 'text-white'}>Nimmu</span>
-              <span className={scrolled ? 'text-brown-earth' : 'text-beige'}> Naturals</span>
-            </span>
           </a>
 
           {/* Desktop */}
@@ -83,7 +85,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://wa.me/91XXXXXXXXXX"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="ml-3 bg-green-deep text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-green-light transition-colors duration-300 flex items-center gap-2"
@@ -131,7 +133,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-deep text-white px-6 py-3 rounded-full text-center font-semibold mt-2 flex items-center justify-center gap-2"

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { WHATSAPP_URL } from '../config/contact'
 
 export default function Hero() {
   return (
@@ -49,7 +50,7 @@ export default function Hero() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }} className="mb-6">
           <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white/90 text-xs md:text-sm font-medium px-5 py-2.5 rounded-full border border-white/20 tracking-wider uppercase">
             <svg className="w-4 h-4 text-blue-river" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 15c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3" strokeLinecap="round" strokeLinejoin="round"/><path d="M3 19c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/></svg>
-            Island Farm on River Godavari &bull; Gudapalli, Konaseema
+            Island Farm on River Godavari &bull; Konaseema
           </span>
         </motion.div>
 
@@ -59,26 +60,28 @@ export default function Hero() {
           <span className="text-beige">And So is Your Food.</span>
         </motion.h1>
 
-        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.7 }} className="text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-4 leading-relaxed">
-          An organic island farm surrounded by the sacred River Godavari.
+        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.7 }} className="text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-6 leading-relaxed">
+          A <span className="text-beige font-semibold">100% organic</span> island farm on the sacred Godavari.
           <br className="hidden md:block" />
-          With treasures from the Eastern Ghats — pure, untouched, alive.
+          Free from synthetic chemicals and pesticides — just real food, grown the natural way.
         </motion.p>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.85 }} className="flex items-center justify-center gap-6 mb-10 text-white/60 text-xs md:text-sm">
-          <span className="flex items-center gap-1.5">
-            <svg className="w-4 h-4 text-blue-river" viewBox="0 0 24 24" fill="currentColor" opacity="0.8"><circle cx="12" cy="12" r="10"/></svg>
-            River Island Farm
-          </span>
-          <span className="w-1 h-1 rounded-full bg-white/30" />
-          <span className="flex items-center gap-1.5">
-            <svg className="w-4 h-4 text-green-soft" viewBox="0 0 24 24" fill="currentColor" opacity="0.8"><path d="M12 2C12 2 20 8 20 16C20 20 16 22 12 22C8 22 4 20 4 16C4 8 12 2 12 2Z"/></svg>
-            Eastern Ghats Sourced
-          </span>
-          <span className="w-1 h-1 rounded-full bg-white/30" />
-          <span className="flex items-center gap-1.5">
-            <svg className="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="currentColor" opacity="0.8"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.85 }} className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-10">
+          <span className="inline-flex items-center gap-1.5 bg-green-500/20 backdrop-blur-sm border border-green-300/40 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full">
+            <svg className="w-4 h-4 text-green-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
             100% Organic
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-red-500/20 backdrop-blur-sm border border-red-300/40 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full">
+            <svg className="w-4 h-4 text-red-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            No Synthetic Chemicals
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-red-500/20 backdrop-blur-sm border border-red-300/40 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full">
+            <svg className="w-4 h-4 text-red-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            No Synthetic Pesticides
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-amber-500/20 backdrop-blur-sm border border-amber-300/40 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full">
+            <svg className="w-4 h-4 text-amber-300" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+            Lab Tested
           </span>
         </motion.div>
 
@@ -86,21 +89,11 @@ export default function Hero() {
           <a href="#island" className="bg-white text-green-deep px-8 py-4 rounded-full font-semibold text-lg hover:bg-beige transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
             Discover Our Island
           </a>
-          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300">
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300">
             Contact on WhatsApp
           </a>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="absolute bottom-24 left-1/2 -translate-x-1/2">
-          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }} className="flex flex-col items-center gap-2">
-            <span className="text-white/60 text-xs tracking-widest uppercase">Scroll</span>
-            <svg width="20" height="30" viewBox="0 0 20 30" fill="none" className="text-white/60">
-              <rect x="1" y="1" width="18" height="28" rx="9" stroke="currentColor" strokeWidth="2"/>
-              <motion.circle animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }} cx="10" cy="10" r="3" fill="currentColor"/>
-            </svg>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   )

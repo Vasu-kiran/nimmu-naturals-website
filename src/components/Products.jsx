@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollAnimation, fadeInUp } from './useScrollAnimation'
+import { WHATSAPP_URL } from '../config/contact'
 
 const productTabs = [
   {
@@ -58,7 +59,21 @@ export default function Products() {
         <motion.div variants={fadeInUp} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.8 }} className="text-center mb-10">
           <span className="text-green-deep text-sm font-semibold tracking-wider uppercase mb-3 block">Our Products</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brown-earth">Nature's <span className="text-green-deep">Bounty</span></h2>
-          <p className="text-brown-light mt-3 text-lg max-w-xl mx-auto">Two pristine sources. Zero chemicals. Infinite care.</p>
+          <p className="text-brown-light mt-3 text-lg max-w-xl mx-auto">Two pristine sources. <span className="text-green-deep font-semibold">Free from synthetic chemicals.</span> Infinite care.</p>
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
+            <span className="inline-flex items-center gap-1.5 bg-green-deep/10 text-green-deep text-xs font-bold px-3 py-1.5 rounded-full border border-green-deep/15">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              100% Organic
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 text-xs font-bold px-3 py-1.5 rounded-full border border-red-100">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              No Synthetic Chemicals
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 text-xs font-bold px-3 py-1.5 rounded-full border border-red-100">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              No Synthetic Pesticides
+            </span>
+          </div>
         </motion.div>
 
         {/* Source tabs */}
@@ -109,7 +124,7 @@ export default function Products() {
                 </div>
                 <div className="mt-6 pt-6 border-t border-beige-dark/30 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <p className="text-brown-light text-sm italic">Availability depends on nature's rhythm</p>
-                  <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer"
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-green-deep text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-green-light transition-colors">
                     What's Fresh Today?
                   </a>
@@ -120,13 +135,21 @@ export default function Products() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {active.products.map((item, i) => (
                   <motion.div key={item.name} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: i * 0.04 }}
-                    className="bg-white rounded-2xl p-5 hover:shadow-lg transition-all duration-400 hover:-translate-y-0.5 group">
+                    className="relative bg-white rounded-2xl p-5 hover:shadow-lg transition-all duration-400 hover:-translate-y-0.5 group border border-green-deep/5">
                     <div className="flex items-start justify-between mb-3">
                       <span className="text-3xl group-hover:scale-110 transition-transform duration-300">{item.emoji}</span>
                       <span className="text-[10px] font-semibold bg-beige-dark/30 text-brown-earth px-2.5 py-1 rounded-full">{item.tag}</span>
                     </div>
                     <h3 className="font-bold text-brown-earth mb-1">{item.name}</h3>
-                    <p className="text-brown-light text-sm leading-relaxed">{item.desc}</p>
+                    <p className="text-brown-light text-sm leading-relaxed mb-3">{item.desc}</p>
+                    <div className="flex items-center gap-1.5 pt-3 border-t border-beige-dark/20">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-green-deep">
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        ORGANIC
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-brown-light/30" />
+                      <span className="text-[10px] font-bold text-red-500/80">SYNTHETIC-FREE</span>
+                    </div>
                   </motion.div>
                 ))}
               </div>
