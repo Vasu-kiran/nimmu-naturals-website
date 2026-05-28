@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBadges from './components/TrustBadges'
 import RiverIsland from './components/RiverIsland'
+import FarmStory from './components/FarmStory'
 import Products from './components/Products'
 import Gallery from './components/Gallery'
 import GetInTouch from './components/GetInTouch'
@@ -15,6 +16,7 @@ function App() {
       <Hero />
       <TrustBadges />
       <RiverIsland />
+      <FarmStory />
       <Products />
       <Gallery />
       <GetInTouch />

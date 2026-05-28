@@ -12,7 +12,11 @@
   --color-blue-river: #4FC3F7;
   --color-blue-river-dark: #0288D1;
 
-  --font-heading: 'Poppins', sans-serif;
+  --color-ink: #211c16;
+  --color-paper: #F7F4EC;
+  --color-cream: #EFE6D3;
+
+  --font-heading: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', sans-serif;
 }
 
@@ -23,14 +27,18 @@
   }
 
   body {
-    background-color: #FAFAF0;
-    color: #333;
+    background-color: #F7F4EC;
+    color: #211c16;
     overflow-x: hidden;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 }
 
@@ -85,7 +93,9 @@
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #F5F5DC; }
-::-webkit-scrollbar-thumb { background: #1B5E20; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #2E7D32; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #F7F4EC; }
+::-webkit-scrollbar-thumb { background: #cdbfa6; }
+::-webkit-scrollbar-thumb:hover { background: #b3a482; }
+
+::selection { background: #1B5E20; color: #F7F4EC; }

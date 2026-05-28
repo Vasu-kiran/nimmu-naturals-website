@@ -1,48 +1,49 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useScrollAnimation, fadeInUp } from './useScrollAnimation'
+import { useScrollAnimation, ease } from './useScrollAnimation'
+import { Eyebrow } from './Botanical'
 import { WHATSAPP_URL } from '../config/contact'
 
 const productTabs = [
   {
     key: 'island',
-    label: '🏝️ Island Farm',
+    label: 'Island Farm',
     sublabel: 'Grown on our Godavari island',
     products: [
-      { name: 'Organic Rice', desc: 'Fragrant, unpolished, from our paddy fields', tag: 'Staple', emoji: '🌾' },
-      { name: 'Fresh Vegetables', desc: 'Seasonal, hand-picked, delivered in hours', tag: 'Seasonal', emoji: '🥬' },
-      { name: 'Pure A2 Cow Milk', desc: 'Free-grazing cows, unprocessed, real milk', tag: 'Daily', emoji: '🥛' },
-      { name: 'Country Eggs', desc: 'Free-range hens that eat naturally', tag: 'Daily', emoji: '🥚' },
-      { name: 'Mangoes', desc: 'Organic mangoes from our island trees', tag: 'Summer', emoji: '🥭' },
-      { name: 'Coconuts', desc: 'Fresh tender coconuts from Konaseema', tag: 'Year-round', emoji: '🥥' },
+      { name: 'Organic Rice', desc: 'Fragrant, unpolished, from our own paddy fields.', tag: 'Staple' },
+      { name: 'Fresh Vegetables', desc: 'Seasonal, hand-picked, delivered within hours.', tag: 'Seasonal' },
+      { name: 'Pure A2 Cow Milk', desc: 'Free-grazing cows, unprocessed, real milk.', tag: 'Daily' },
+      { name: 'Country Eggs', desc: 'Free-range hens that forage naturally.', tag: 'Daily' },
+      { name: 'Mangoes', desc: 'Organic mangoes from our island trees.', tag: 'Summer' },
+      { name: 'Coconuts', desc: 'Tender coconuts from the Konaseema groves.', tag: 'Year-round' },
     ],
   },
   {
     key: 'ghats',
-    label: '⛰️ Eastern Ghats',
-    sublabel: 'Sourced from tribal partners',
-    intro: 'We partner with tribal communities in the Eastern Ghats — sourcing rare, wild, ancient foods that support livelihoods and protect forests.',
+    label: 'Eastern Ghats',
+    sublabel: 'Sourced with tribal partners',
+    intro: 'Beyond our island, we partner with tribal communities in the Eastern Ghats — sourcing rare, wild, ancient foods that support livelihoods and protect forests.',
     products: [
-      { name: 'Wild Forest Honey', desc: 'Collected by tribal communities from ancient forests. Raw, unprocessed, full of enzymes', tag: 'Seasonal', emoji: '🍯' },
-      { name: 'Black Pepper', desc: 'Hand-picked wild pepper from highland plantations, sun-dried the traditional way', tag: 'Seasonal', emoji: '⚫' },
-      { name: 'Turmeric & Spices', desc: 'High-curcumin turmeric grown in mineral-rich red soil valleys of the ghats', tag: 'Seasonal', emoji: '🟡' },
-      { name: 'Coffee Beans', desc: 'Shade-grown from small tribal estates, slow-roasted, single-origin, rich and smooth', tag: 'Year-round', emoji: '☕' },
-      { name: 'Millets & Grains', desc: 'Ragi, jowar, little millet — ancient grains grown using centuries-old methods', tag: 'Seasonal', emoji: '🌾' },
-      { name: 'Herbal & Medicinal', desc: 'Rare herbs, dried flowers, medicinal roots — sustainably foraged from pristine forests', tag: 'Limited', emoji: '🌿' },
+      { name: 'Wild Forest Honey', desc: 'Collected from ancient forests. Raw, unprocessed, full of enzymes.', tag: 'Seasonal' },
+      { name: 'Black Pepper', desc: 'Hand-picked highland pepper, sun-dried the traditional way.', tag: 'Seasonal' },
+      { name: 'Turmeric & Spices', desc: 'High-curcumin turmeric from mineral-rich valley soil.', tag: 'Seasonal' },
+      { name: 'Coffee Beans', desc: 'Shade-grown, slow-roasted, single-origin from small estates.', tag: 'Year-round' },
+      { name: 'Millets & Grains', desc: 'Ragi, jowar and little millet, grown by century-old methods.', tag: 'Seasonal' },
+      { name: 'Herbal & Medicinal', desc: 'Rare herbs, dried flowers and roots, sustainably foraged.', tag: 'Limited' },
     ],
   },
   {
     key: 'seasonal',
-    label: '📅 What\'s Fresh',
-    sublabel: 'Current season availability',
+    label: "What's Fresh",
+    sublabel: 'In season right now',
     seasonal: true,
   },
 ]
 
 const seasonalData = {
-  kharif: { name: 'Kharif (Jun–Nov)', icon: '🌧️', items: ['Paddy Rice 🌾', 'Vegetables 🥬', 'Turmeric 🟡', 'Cow Milk 🥛', 'Country Eggs 🥚', 'Wild Honey 🍯'] },
-  rabi: { name: 'Rabi (Nov–Mar)', icon: '❄️', items: ['Leafy Greens 🥗', 'Tomatoes 🍅', 'Black Pepper ⚫', 'Millets 🌾', 'Cow Milk 🥛', 'Herbs 🌿'] },
-  summer: { name: 'Summer (Mar–Jun)', icon: '☀️', items: ['Mangoes 🥭', 'Drumstick 🟢', 'Coffee ☕', 'Wild Honey 🍯', 'Cow Milk 🥛', 'Coconuts 🥥'] },
+  kharif: { name: 'Kharif · Jun–Nov', items: ['Paddy rice', 'Vegetables', 'Turmeric', 'Cow milk', 'Country eggs', 'Wild honey'] },
+  rabi: { name: 'Rabi · Nov–Mar', items: ['Leafy greens', 'Tomatoes', 'Black pepper', 'Millets', 'Cow milk', 'Herbs'] },
+  summer: { name: 'Summer · Mar–Jun', items: ['Mangoes', 'Drumstick', 'Coffee', 'Wild honey', 'Cow milk', 'Coconuts'] },
 }
 
 const currentMonth = new Date().getMonth()
@@ -54,106 +55,108 @@ export default function Products() {
   const active = productTabs.find(t => t.key === activeTab)
 
   return (
-    <section id="products" ref={ref} className="px-6 md:px-16 lg:px-24 py-20 md:py-28 bg-beige-light">
-      <div className="max-w-6xl mx-auto">
-        <motion.div variants={fadeInUp} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.8 }} className="text-center mb-10">
-          <span className="text-green-deep text-sm font-semibold tracking-wider uppercase mb-3 block">Our Products</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brown-earth">Nature's <span className="text-green-deep">Bounty</span></h2>
-          <p className="text-brown-light mt-3 text-lg max-w-xl mx-auto">Two pristine sources. <span className="text-green-deep font-semibold">Free from synthetic chemicals.</span> Infinite care.</p>
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
-            <span className="inline-flex items-center gap-1.5 bg-green-deep/10 text-green-deep text-xs font-bold px-3 py-1.5 rounded-full border border-green-deep/15">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              100% Organic
-            </span>
-            <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 text-xs font-bold px-3 py-1.5 rounded-full border border-red-100">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              No Synthetic Chemicals
-            </span>
-            <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 text-xs font-bold px-3 py-1.5 rounded-full border border-red-100">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              No Synthetic Pesticides
-            </span>
-          </div>
+    <section id="products" ref={ref} className="bg-white px-6 md:px-10 py-16 md:py-24">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease }}
+          className="max-w-2xl mb-12 md:mb-16"
+        >
+          <Eyebrow className="text-green-deep/70 mb-5">02 — The harvest</Eyebrow>
+          <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-ink leading-[1.05] font-medium">
+            What we grow,
+            <br /> and what we gather.
+          </h2>
+          <p className="mt-6 text-ink/65 text-lg leading-relaxed">
+            Two pristine sources — our island farm and the forests of the Eastern Ghats.
+            Everything free from synthetic chemicals.
+          </p>
         </motion.div>
 
-        {/* Source tabs */}
-        <motion.div variants={fadeInUp} initial="hidden" animate={isInView ? 'visible' : 'hidden'} transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex flex-wrap justify-center gap-3 mb-10">
+        {/* Tabs */}
+        <div className="flex flex-wrap gap-x-8 gap-y-3 border-b border-ink/12 mb-10">
           {productTabs.map((tab) => (
-            <button key={tab.key} onClick={() => setActiveTab(tab.key)}
-              className={`px-5 py-3 rounded-2xl text-sm font-medium transition-all duration-300 text-left ${
-                activeTab === tab.key ? 'bg-green-deep text-white shadow-lg scale-105' : 'bg-white text-brown-earth hover:shadow-md'
-              }`}>
-              <span className="block text-base font-semibold">{tab.label}</span>
-              <span className={`text-xs ${activeTab === tab.key ? 'text-white/70' : 'text-brown-light'}`}>{tab.sublabel}</span>
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`pb-4 -mb-px text-sm md:text-base tracking-wide border-b-2 transition-colors duration-200 ${
+                activeTab === tab.key ? 'border-ink text-ink' : 'border-transparent text-ink/45 hover:text-ink'
+              }`}
+            >
+              {tab.label}
             </button>
           ))}
-        </motion.div>
+        </div>
+
+        <p className="text-sm text-ink/50 mb-8">{active.sublabel}</p>
 
         {/* Tab content */}
         <AnimatePresence mode="wait">
-          <motion.div key={activeTab} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-            {/* Intro text for ghats tab */}
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.3, ease }}
+          >
             {active.intro && (
-              <div className="mb-6 flex items-center gap-4 bg-amber-500/8 rounded-2xl p-5 border border-amber-500/15">
-                <img src="/images/eastern-ghats.webp" alt="" className="w-16 h-16 rounded-xl object-cover shrink-0 hidden sm:block" />
-                <p className="text-brown-light text-sm leading-relaxed"><strong className="text-brown-earth">Beyond our island farm:</strong> {active.intro}</p>
+              <div className="mb-10 flex flex-col sm:flex-row gap-5 items-start">
+                <img src="/images/eastern-ghats.webp" alt="" className="w-full sm:w-44 h-32 object-cover shrink-0" />
+                <p className="text-ink/65 leading-relaxed max-w-2xl">{active.intro}</p>
               </div>
             )}
 
             {active.seasonal ? (
-              /* Seasonal calendar */
-              <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {Object.entries(seasonalData).map(([key, season]) => (
-                    <div key={key} className={`rounded-2xl p-6 border-2 transition-all duration-300 ${
-                      key === currentSeason ? 'border-green-deep bg-green-deep/5 shadow-md' : 'border-beige-dark/30 bg-beige-light/30'
-                    }`}>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-2xl">{season.icon}</span>
-                        {key === currentSeason && <span className="text-[10px] font-bold bg-green-deep text-white px-2 py-1 rounded-full uppercase">Now</span>}
-                      </div>
-                      <h4 className="font-bold text-brown-earth mb-3">{season.name}</h4>
-                      <div className="space-y-2">
-                        {season.items.map((item) => (
-                          <p key={item} className="text-sm text-brown-light">{item}</p>
-                        ))}
-                      </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 border-t border-ink/12">
+                {Object.entries(seasonalData).map(([key, season]) => (
+                  <div
+                    key={key}
+                    className={`p-8 border-b md:border-b-0 md:border-r last:border-r-0 border-ink/12 ${
+                      key === currentSeason ? 'bg-green-deep/[0.04]' : ''
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-5">
+                      <h4 className="font-[family-name:var(--font-heading)] text-xl text-ink font-medium">{season.name}</h4>
+                      {key === currentSeason && (
+                        <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-green-deep">Now</span>
+                      )}
                     </div>
-                  ))}
-                </div>
-                <div className="mt-6 pt-6 border-t border-beige-dark/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <p className="text-brown-light text-sm italic">Availability depends on nature's rhythm</p>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-green-deep text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-green-light transition-colors">
-                    What's Fresh Today?
-                  </a>
-                </div>
+                    <ul className="space-y-2">
+                      {season.items.map((item) => (
+                        <li key={item} className="text-sm text-ink/60">{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             ) : (
-              /* Product grid */
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {active.products.map((item, i) => (
-                  <motion.div key={item.name} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3, delay: i * 0.04 }}
-                    className="relative bg-white rounded-2xl p-5 hover:shadow-lg transition-all duration-400 hover:-translate-y-0.5 group border border-green-deep/5">
-                    <div className="flex items-start justify-between mb-3">
-                      <span className="text-3xl group-hover:scale-110 transition-transform duration-300">{item.emoji}</span>
-                      <span className="text-[10px] font-semibold bg-beige-dark/30 text-brown-earth px-2.5 py-1 rounded-full">{item.tag}</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/12 border border-ink/12">
+                {active.products.map((item) => (
+                  <div key={item.name} className="bg-white p-7 hover:bg-paper transition-colors duration-300">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <h3 className="font-[family-name:var(--font-heading)] text-xl text-ink font-medium">{item.name}</h3>
+                      <span className="text-[10px] uppercase tracking-[0.18em] text-ink/40 shrink-0">{item.tag}</span>
                     </div>
-                    <h3 className="font-bold text-brown-earth mb-1">{item.name}</h3>
-                    <p className="text-brown-light text-sm leading-relaxed mb-3">{item.desc}</p>
-                    <div className="flex items-center gap-1.5 pt-3 border-t border-beige-dark/20">
-                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-green-deep">
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                        ORGANIC
-                      </span>
-                      <span className="w-1 h-1 rounded-full bg-brown-light/30" />
-                      <span className="text-[10px] font-bold text-red-500/80">SYNTHETIC-FREE</span>
-                    </div>
-                  </motion.div>
+                    <p className="text-sm text-ink/60 leading-relaxed mt-3">{item.desc}</p>
+                  </div>
                 ))}
               </div>
             )}
+
+            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-ink/12 pt-6">
+              <p className="text-sm text-ink/50 italic">Availability follows nature&rsquo;s rhythm, not a catalogue.</p>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-ink border-b border-ink/30 pb-1 hover:border-green-deep hover:text-green-deep transition-colors"
+              >
+                Ask what&rsquo;s fresh today
+                <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+              </a>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
