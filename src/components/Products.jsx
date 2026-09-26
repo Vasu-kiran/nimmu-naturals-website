@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useScrollAnimation, ease } from './useScrollAnimation'
 import { Eyebrow } from './Botanical'
 import { WHATSAPP_URL } from '../config/contact'
 
-const productTabs = [
+const sources = [
   {
     key: 'island',
-    label: 'Island Farm',
+    label: 'From the island',
     sublabel: 'Grown on our Godavari island',
+    image: '/images/vegetables.jpeg',
+    alt: 'Rows of cauliflower growing in red soil on the island farm',
     products: [
       { name: 'Organic Rice', desc: 'Fragrant, unpolished, from our own paddy fields.', tag: 'Staple' },
       { name: 'Fresh Vegetables', desc: 'Seasonal, hand-picked, delivered within hours.', tag: 'Seasonal' },
@@ -20,145 +21,136 @@ const productTabs = [
   },
   {
     key: 'ghats',
-    label: 'Eastern Ghats',
+    label: 'From the Eastern Ghats',
     sublabel: 'Sourced with tribal partners',
-    intro: 'Beyond our island, we partner with tribal communities in the Eastern Ghats — sourcing rare, wild, ancient foods that support livelihoods and protect forests.',
+    image: '/images/eastern-ghats.webp',
+    alt: 'Sunset over the hills of the Eastern Ghats',
+    intro: 'Beyond our island, we partner with tribal communities in the Eastern Ghats for foods that grow wild in the hills.',
     products: [
-      { name: 'Wild Forest Honey', desc: 'Collected from ancient forests. Raw, unprocessed, full of enzymes.', tag: 'Seasonal' },
+      { name: 'Wild Forest Honey', desc: 'Collected from ancient forests. Raw and unprocessed.', tag: 'Seasonal' },
       { name: 'Black Pepper', desc: 'Hand-picked highland pepper, sun-dried the traditional way.', tag: 'Seasonal' },
       { name: 'Turmeric & Spices', desc: 'High-curcumin turmeric from mineral-rich valley soil.', tag: 'Seasonal' },
-      { name: 'Coffee Beans', desc: 'Shade-grown, slow-roasted, single-origin from small estates.', tag: 'Year-round' },
-      { name: 'Millets & Grains', desc: 'Ragi, jowar and little millet, grown by century-old methods.', tag: 'Seasonal' },
-      { name: 'Herbal & Medicinal', desc: 'Rare herbs, dried flowers and roots, sustainably foraged.', tag: 'Limited' },
+      { name: 'Coffee Beans', desc: 'Shade-grown, single-origin from small estates.', tag: 'Year-round' },
+      { name: 'Millets & Grains', desc: 'Ragi, jowar and little millet.', tag: 'Seasonal' },
+      { name: 'Herbal & Medicinal', desc: 'Herbs, dried flowers and roots, sustainably foraged.', tag: 'Limited' },
     ],
-  },
-  {
-    key: 'seasonal',
-    label: "What's Fresh",
-    sublabel: 'In season right now',
-    seasonal: true,
   },
 ]
 
 const seasonalData = {
-  kharif: { name: 'Kharif · Jun–Nov', items: ['Paddy rice', 'Vegetables', 'Turmeric', 'Cow milk', 'Country eggs', 'Wild honey'] },
-  rabi: { name: 'Rabi · Nov–Mar', items: ['Leafy greens', 'Tomatoes', 'Black pepper', 'Millets', 'Cow milk', 'Herbs'] },
-  summer: { name: 'Summer · Mar–Jun', items: ['Mangoes', 'Drumstick', 'Coffee', 'Wild honey', 'Cow milk', 'Coconuts'] },
+  kharif: { name: 'Kharif', months: 'Jun – Nov', items: ['Paddy rice', 'Vegetables', 'Turmeric', 'Cow milk', 'Country eggs', 'Wild honey'] },
+  rabi: { name: 'Rabi', months: 'Nov – Mar', items: ['Leafy greens', 'Tomatoes', 'Black pepper', 'Millets', 'Cow milk', 'Herbs'] },
+  summer: { name: 'Summer', months: 'Mar – Jun', items: ['Mangoes', 'Drumstick', 'Coffee', 'Wild honey', 'Cow milk', 'Coconuts'] },
 }
 
 const currentMonth = new Date().getMonth()
 const currentSeason = currentMonth >= 5 && currentMonth <= 10 ? 'kharif' : currentMonth >= 2 && currentMonth <= 5 ? 'summer' : 'rabi'
 
+function SourceColumn({ source, isInView, delay }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay, ease }}
+    >
+      <div className="overflow-hidden">
+        <img
+          src={source.image}
+          alt={source.alt}
+          className="w-full aspect-[4/3] object-cover transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
+          loading="lazy"
+        />
+      </div>
+      <div className="mt-8 flex items-baseline justify-between gap-4">
+        <h3 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl text-ink tracking-[-0.02em]">
+          {source.label}
+        </h3>
+        <span className="text-[11px] uppercase tracking-[0.22em] text-brass shrink-0 hidden sm:inline">{source.sublabel}</span>
+      </div>
+      {source.intro && <p className="mt-4 text-ink/60 leading-relaxed max-w-lg">{source.intro}</p>}
+
+      <ul className="mt-8 border-t border-ink/15">
+        {source.products.map((item) => (
+          <li key={item.name} className="group py-5 border-b border-ink/15">
+            <div className="flex items-baseline justify-between gap-4">
+              <p className="font-[family-name:var(--font-heading)] text-xl md:text-[1.4rem] text-ink group-hover:text-brass transition-colors duration-300">
+                {item.name}
+              </p>
+              <span className="text-[10px] uppercase tracking-[0.22em] text-ink/40 shrink-0">{item.tag}</span>
+            </div>
+            <p className="text-sm text-ink/55 leading-relaxed mt-1.5">{item.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  )
+}
+
 export default function Products() {
-  const { ref, isInView } = useScrollAnimation(0.1)
-  const [activeTab, setActiveTab] = useState('island')
-  const active = productTabs.find(t => t.key === activeTab)
+  const { ref, isInView } = useScrollAnimation(0.05)
+  const season = seasonalData[currentSeason]
 
   return (
-    <section id="products" ref={ref} className="bg-white px-6 md:px-10 py-16 md:py-24">
-      <div className="max-w-7xl mx-auto">
+    <section id="products" ref={ref} className="bg-ivory pt-24 md:pt-36 pb-24 md:pb-32">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease }}
-          className="max-w-2xl mb-12 md:mb-16"
+          className="grid lg:grid-cols-12 gap-10 items-end mb-16 md:mb-24"
         >
-          <Eyebrow className="text-green-deep/70 mb-5">02 — The harvest</Eyebrow>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-ink leading-[1.05] font-medium">
-            What we grow,
-            <br /> and what we gather.
-          </h2>
-          <p className="mt-6 text-ink/65 text-lg leading-relaxed">
-            Two pristine sources — our island farm and the forests of the Eastern Ghats.
+          <div className="lg:col-span-8">
+            <Eyebrow className="text-brass mb-8">The harvest</Eyebrow>
+            <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.03em]">
+              What we grow,
+              <br /> <span className="italic">and what we gather.</span>
+            </h2>
+          </div>
+          <p className="lg:col-span-4 lg:pb-3 text-ink/65 text-lg leading-relaxed">
+            Two sources — our island farm and the forests of the Eastern Ghats.
             Everything free from synthetic chemicals.
           </p>
         </motion.div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap gap-x-8 gap-y-3 border-b border-ink/12 mb-10">
-          {productTabs.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`pb-4 -mb-px text-sm md:text-base tracking-wide border-b-2 transition-colors duration-200 ${
-                activeTab === tab.key ? 'border-ink text-ink' : 'border-transparent text-ink/45 hover:text-ink'
-              }`}
-            >
-              {tab.label}
-            </button>
+        {/* Two sources, side by side */}
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-16 xl:gap-24">
+          {sources.map((s, i) => (
+            <SourceColumn key={s.key} source={s} isInView={isInView} delay={0.1 + i * 0.1} />
           ))}
         </div>
 
-        <p className="text-sm text-ink/50 mb-8">{active.sublabel}</p>
-
-        {/* Tab content */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.3, ease }}
-          >
-            {active.intro && (
-              <div className="mb-10 flex flex-col sm:flex-row gap-5 items-start">
-                <img src="/images/eastern-ghats.webp" alt="" className="w-full sm:w-44 h-32 object-cover shrink-0" />
-                <p className="text-ink/65 leading-relaxed max-w-2xl">{active.intro}</p>
-              </div>
-            )}
-
-            {active.seasonal ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 border-t border-ink/12">
-                {Object.entries(seasonalData).map(([key, season]) => (
-                  <div
-                    key={key}
-                    className={`p-8 border-b md:border-b-0 md:border-r last:border-r-0 border-ink/12 ${
-                      key === currentSeason ? 'bg-green-deep/[0.04]' : ''
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-5">
-                      <h4 className="font-[family-name:var(--font-heading)] text-xl text-ink font-medium">{season.name}</h4>
-                      {key === currentSeason && (
-                        <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-green-deep">Now</span>
-                      )}
-                    </div>
-                    <ul className="space-y-2">
-                      {season.items.map((item) => (
-                        <li key={item} className="text-sm text-ink/60">{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/12 border border-ink/12">
-                {active.products.map((item) => (
-                  <div key={item.name} className="bg-white p-7 hover:bg-paper transition-colors duration-300">
-                    <div className="flex items-baseline justify-between gap-3">
-                      <h3 className="font-[family-name:var(--font-heading)] text-xl text-ink font-medium">{item.name}</h3>
-                      <span className="text-[10px] uppercase tracking-[0.18em] text-ink/40 shrink-0">{item.tag}</span>
-                    </div>
-                    <p className="text-sm text-ink/60 leading-relaxed mt-3">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-ink/12 pt-6">
-              <p className="text-sm text-ink/50 italic">Availability follows nature&rsquo;s rhythm, not a catalogue.</p>
+        {/* In season now */}
+        <div className="mt-24 md:mt-32 bg-forest text-ivory grid lg:grid-cols-12">
+          <div className="lg:col-span-5 p-8 md:p-12 lg:border-r border-ivory/10">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-brass-light">In season now</p>
+            <p className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl mt-5 tracking-[-0.02em]">
+              {season.name}
+            </p>
+            <p className="font-[family-name:var(--font-heading)] italic text-ivory/55 text-xl mt-2">{season.months}</p>
+          </div>
+          <div className="lg:col-span-7 p-8 md:p-12 pt-0 md:pt-0 lg:pt-12 flex flex-col justify-between gap-10">
+            <ul className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4">
+              {season.items.map((item) => (
+                <li key={item} className="text-ivory/80 flex items-center gap-3">
+                  <span className="w-1 h-1 bg-brass-light shrink-0" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-t border-ivory/10 pt-6">
+              <p className="text-sm text-ivory/50">Availability follows the season, not a catalogue.</p>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 text-sm font-medium text-ink border-b border-ink/30 pb-1 hover:border-green-deep hover:text-green-deep transition-colors"
+                className="shrink-0 inline-flex items-center justify-center bg-brass-light text-forest px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.18em] hover:bg-ivory transition-colors duration-300"
               >
                 Ask what&rsquo;s fresh today
-                <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
               </a>
             </div>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        </div>
       </div>
     </section>
   )

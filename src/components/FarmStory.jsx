@@ -7,34 +7,37 @@ export default function FarmStory() {
   const show = isInView ? { opacity: 1, y: 0 } : {}
 
   return (
-    <section ref={ref} className="bg-cream py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section ref={ref} className="bg-forest text-ivory py-24 md:py-36">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 grid lg:grid-cols-12 gap-14 lg:gap-20 items-center">
         <motion.figure
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.9, ease }}
-          className="order-2 lg:order-1"
+          transition={{ duration: 1, ease }}
+          className="lg:col-span-5 order-2 lg:order-1"
         >
           <img
             src="/images/cow-grazing.jpeg"
-            alt="Cows grazing freely on the island pastures"
-            className="w-full aspect-[4/3] object-cover"
+            alt="Standing with one of the farm's cows in the island pasture"
+            className="w-full aspect-[4/5] object-cover"
             loading="lazy"
           />
+          <figcaption className="mt-4 text-[11px] uppercase tracking-[0.22em] text-ivory/45">
+            On the island, Gudapalli
+          </figcaption>
         </motion.figure>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={show}
-          transition={{ duration: 0.7, ease }}
-          className="order-1 lg:order-2"
+          transition={{ duration: 0.8, ease }}
+          className="lg:col-span-7 order-1 lg:order-2"
         >
-          <Eyebrow className="text-green-deep/70 mb-5">Our story</Eyebrow>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl text-ink leading-[1.06] font-medium">
+          <Eyebrow className="text-brass-light mb-8">Our story</Eyebrow>
+          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em]">
             I watched my village
-            <br /> fall ill.
+            <br /> <span className="italic text-brass-light">fall ill.</span>
           </h2>
-          <div className="mt-7 space-y-5 text-ink/70 leading-relaxed max-w-xl">
+          <div className="mt-10 space-y-6 text-ivory/70 text-[1.05rem] leading-[1.8] max-w-xl">
             <p>
               I&rsquo;m from a small village in Konaseema. For years I watched the people
               around me keep falling sick, and the more I looked into why, the more it
@@ -53,6 +56,9 @@ export default function FarmStory() {
               farmers in the Eastern Ghats.
             </p>
           </div>
+          <p className="mt-10 pt-6 border-t border-ivory/15 max-w-xl text-[11px] uppercase tracking-[0.25em] text-ivory/45">
+            The founder, Nimmu Naturals
+          </p>
         </motion.div>
       </div>
     </section>

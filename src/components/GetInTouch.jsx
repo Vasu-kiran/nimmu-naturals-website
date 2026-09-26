@@ -4,7 +4,7 @@ import { Eyebrow } from './Botanical'
 import { WHATSAPP_URL, WHATSAPP_TEL, WHATSAPP_DISPLAY, INSTAGRAM_URL, INSTAGRAM_HANDLE, whatsappLink } from '../config/contact'
 
 const WhatsAppIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.315 0-4.458-.767-6.183-2.06l-.432-.324-2.647.887.887-2.647-.324-.432A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
 )
 
 const contacts = [
@@ -21,18 +21,18 @@ export default function GetInTouch() {
   const show = isInView ? { opacity: 1, y: 0 } : {}
 
   return (
-    <section id="contact" ref={ref} className="bg-cream px-6 md:px-10 py-16 md:py-24">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" ref={ref} className="bg-sand pt-24 md:pt-36 pb-24 md:pb-32">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={show}
           transition={{ duration: 0.7, ease }}
-          className="max-w-2xl mb-12 md:mb-16"
+          className="max-w-3xl mb-16 md:mb-20"
         >
-          <Eyebrow className="text-green-deep/70 mb-5">04 — Say hello</Eyebrow>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-ink leading-[1.05] font-medium">
-            Talk directly to the farmer.
+          <Eyebrow className="text-brass mb-8">Say hello</Eyebrow>
+          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.03em]">
+            Talk directly <span className="italic">to the farmer.</span>
           </h2>
           <p className="mt-6 text-ink/65 text-lg leading-relaxed">
             No call center. No automated replies. Just real people who grow your food.
@@ -47,24 +47,24 @@ export default function GetInTouch() {
                 key={c.label}
                 href={c.href}
                 {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                className="group flex items-center justify-between gap-4 border-t border-ink/12 last:border-b py-6 transition-colors"
+                className="group flex items-center justify-between gap-4 border-t border-ink/15 last:border-b py-7 transition-colors"
               >
                 <div className="flex items-center gap-4">
-                  <span className="text-ink/60 group-hover:text-green-deep transition-colors">{c.icon}</span>
+                  <span className="text-brass group-hover:text-ink transition-colors">{c.icon}</span>
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-ink/40">{c.label}</p>
-                    <p className="font-[family-name:var(--font-heading)] text-lg md:text-xl text-ink mt-0.5">{c.value}</p>
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-ink/45">{c.label}</p>
+                    <p className="font-[family-name:var(--font-heading)] text-2xl md:text-[1.75rem] text-ink mt-1 group-hover:text-brass transition-colors">{c.value}</p>
                   </div>
                 </div>
-                <span className="text-ink/30 group-hover:text-green-deep group-hover:translate-x-0.5 transition-all">&#8599;</span>
+                <span className="text-xl text-ink/30 group-hover:text-brass group-hover:translate-x-0.5 transition-all">&#8599;</span>
               </a>
             ))}
           </div>
 
           {/* Delivery + visit */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="border border-ink/12 p-7">
-              <h3 className="font-[family-name:var(--font-heading)] text-xl text-ink font-medium mb-5">Where we deliver</h3>
+            <div className="bg-ivory p-8 md:p-10">
+              <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-ink mb-6">Where we deliver</h3>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <p className="font-medium text-ink">Andhra Pradesh</p>
@@ -75,7 +75,7 @@ export default function GetInTouch() {
                   <p className="text-sm text-ink/55 mt-1 leading-relaxed">Hyderabad, Secunderabad, Warangal &amp; surroundings.</p>
                 </div>
               </div>
-              <p className="text-sm text-ink/55 mt-6 pt-5 border-t border-ink/10">
+              <p className="text-sm text-ink/55 mt-6 pt-5 border-t border-ink/12">
                 Somewhere else? <span className="text-ink">WhatsApp us</span> — we&rsquo;ll find a way.
               </p>
             </div>
@@ -84,13 +84,13 @@ export default function GetInTouch() {
               href={whatsappLink('Hi! I would like to visit the farm')}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block border border-ink/12 p-7 hover:border-green-deep/40 transition-colors"
+              className="group block bg-ivory p-8 md:p-10 hover:bg-forest hover:text-ivory transition-colors duration-500"
             >
-              <h3 className="font-[family-name:var(--font-heading)] text-xl text-ink font-medium">Visit our farm</h3>
-              <p className="text-sm text-ink/55 mt-2 leading-relaxed max-w-md">
+              <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-ink group-hover:text-ivory transition-colors duration-500">Visit our farm</h3>
+              <p className="text-sm text-ink/55 group-hover:text-ivory/65 mt-3 leading-relaxed max-w-md transition-colors duration-500">
                 Walk the fields, meet the animals, taste the food. Small groups welcome.
               </p>
-              <span className="inline-flex items-center gap-2 text-sm font-medium text-green-deep mt-4">
+              <span className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.18em] text-brass group-hover:text-brass-light mt-6 transition-colors duration-500">
                 Book a farm visit
                 <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
               </span>
@@ -103,11 +103,11 @@ export default function GetInTouch() {
           initial={{ opacity: 0, y: 16 }}
           animate={show}
           transition={{ duration: 0.7, delay: 0.1, ease }}
-          className="mt-16 bg-green-deep text-paper p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between"
+          className="mt-20 md:mt-24 bg-forest text-ivory p-8 md:p-14 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between"
         >
           <div className="max-w-xl">
-            <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl font-medium">Join our farm family</h3>
-            <p className="text-paper/70 mt-2 leading-relaxed">
+            <h3 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl tracking-[-0.02em]">Join our <span className="italic text-brass-light">farm family</span></h3>
+            <p className="text-ivory/65 mt-3 leading-relaxed">
               Weekly harvest updates, seasonal recipes, farm stories, and first access to fresh produce.
             </p>
           </div>
@@ -115,7 +115,7 @@ export default function GetInTouch() {
             href={whatsappLink('Hi! I want to join the Nimmu Naturals community')}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 bg-paper text-green-deep px-6 py-3.5 text-sm font-medium hover:bg-cream transition-colors duration-300"
+            className="shrink-0 inline-flex items-center gap-2 bg-brass-light text-forest px-7 py-4 text-[12px] font-medium uppercase tracking-[0.18em] hover:bg-ivory transition-colors duration-300"
           >
             <WhatsAppIcon className="w-4 h-4" />
             Join the community

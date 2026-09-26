@@ -1,102 +1,78 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollAnimation, ease } from './useScrollAnimation'
 import { Eyebrow } from './Botanical'
 
+// Two 2×2 feature tiles plus eight tall tiles — packs with no gaps at 4, 3 and 2 columns.
 const galleryItems = [
-  { id: 1, title: 'Wild Honeycomb', category: 'farm', aspect: 'portrait', desc: 'Fresh honeycomb from our coconut groves — raw, pure, alive.', image: '/images/honey.jpeg' },
-  { id: 2, title: 'Cow Grazing Free', category: 'animals', aspect: 'portrait', desc: 'Our cows roaming the lush green island pastures.', image: '/images/cow-grazing.jpeg' },
-  { id: 3, title: 'The Farmer & His Cow', category: 'people', aspect: 'portrait', desc: 'The bond between farmer and animal — this is real farming.', image: '/images/farmer-with-cow.jpeg' },
-  { id: 4, title: 'Fresh Turmeric Harvest', category: 'farm', aspect: 'portrait', desc: 'Freshly harvested organic turmeric — vibrant and pure.', image: '/images/turmeric.jpeg' },
-  { id: 5, title: 'River Godavari', category: 'nature', aspect: 'landscape', desc: 'The sacred Godavari with boats — our island in the distance.', image: '/images/godavari-river.jpg' },
-  { id: 6, title: 'Eastern Ghats Sunset', category: 'nature', aspect: 'landscape', desc: 'Sunset over the Eastern Ghats, where our tribal partners source.', image: '/images/eastern-ghats.webp' },
-  { id: 7, title: 'Ducks on the Farm', category: 'animals', aspect: 'portrait', desc: 'Our pest-control team, resting by the farm pond.', image: '/images/ducks-farm.jpeg' },
-  { id: 8, title: 'Nimmu Naturals Honey', category: 'farm', aspect: 'portrait', desc: 'Our wild honey — pure, raw, straight from the hive.', image: '/images/honey-jar.jpeg' },
-  { id: 9, title: 'Farm Stall', category: 'people', aspect: 'portrait', desc: 'Selling direct — no middlemen, just trust.', image: '/images/farm-stall.jpeg' },
-  { id: 10, title: 'Organic Vegetable Field', category: 'farm', aspect: 'landscape', desc: 'Rows of organic vegetables on our island farm.', image: '/images/vegetables.jpeg' },
-]
-
-const categories = [
-  { key: 'all', label: 'All' },
-  { key: 'farm', label: 'Farm Life' },
-  { key: 'animals', label: 'Animals' },
-  { key: 'nature', label: 'Nature' },
-  { key: 'people', label: 'People' },
+  { id: 5, title: 'River Godavari', desc: 'The Godavari with boats — our island in the distance.', image: '/images/godavari-river.jpg', span: 'col-span-2 row-span-2' },
+  { id: 1, title: 'Wild honeycomb', desc: 'Fresh honeycomb from our coconut groves.', image: '/images/honey.jpeg', span: 'row-span-2' },
+  { id: 4, title: 'Fresh turmeric harvest', desc: 'Freshly harvested organic turmeric.', image: '/images/turmeric.jpeg', span: 'row-span-2' },
+  { id: 7, title: 'Ducks on the farm', desc: 'Our pest-control team, resting by the farm pond.', image: '/images/ducks-farm.jpeg', span: 'row-span-2' },
+  { id: 2, title: 'A calf grazing', desc: 'Grazing freely on the island pasture.', image: '/images/farmer-with-cow.jpeg', span: 'row-span-2' },
+  { id: 10, title: 'Vegetable field', desc: 'Rows of organic vegetables on our island farm.', image: '/images/vegetables.jpeg', span: 'col-span-2 row-span-2' },
+  { id: 3, title: 'The farmer and his cow', desc: 'Out in the pasture on the island.', image: '/images/cow-grazing.jpeg', span: 'row-span-2' },
+  { id: 9, title: 'Farm stall', desc: 'Selling direct, with no middlemen.', image: '/images/farm-stall.jpeg', span: 'row-span-2' },
+  { id: 8, title: 'Nimmu Naturals honey', desc: 'Our wild honey, raw from the hive.', image: '/images/honey-jar.jpeg', span: 'row-span-2' },
+  { id: 6, title: 'Eastern Ghats at sunset', desc: 'The hills where our tribal partners source.', image: '/images/eastern-ghats.webp', span: 'row-span-2' },
 ]
 
 export default function Gallery() {
   const { ref, isInView } = useScrollAnimation(0.05)
-  const [activeCategory, setActiveCategory] = useState('all')
   const [selectedItem, setSelectedItem] = useState(null)
 
-  const filtered = activeCategory === 'all'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeCategory)
+  useEffect(() => {
+    if (!selectedItem) return
+    const onKey = (e) => e.key === 'Escape' && setSelectedItem(null)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selectedItem])
 
   return (
-    <section id="gallery" ref={ref} className="bg-paper px-6 md:px-10 py-16 md:py-24">
-      <div className="max-w-7xl mx-auto">
+    <section id="gallery" ref={ref} className="bg-forest-deep text-ivory py-24 md:py-36">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease }}
-          className="grid lg:grid-cols-12 gap-8 items-end mb-12 md:mb-16"
+          className="grid lg:grid-cols-12 gap-10 items-end mb-16 md:mb-20"
         >
           <div className="lg:col-span-8">
-            <Eyebrow className="text-green-deep/70 mb-5">03 — In pictures</Eyebrow>
-            <h2 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-ink leading-[1.05] font-medium">
-              See the real farm.
+            <Eyebrow className="text-brass-light mb-8">In pictures</Eyebrow>
+            <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em]">
+              See the <span className="italic text-brass-light">real farm.</span>
             </h2>
           </div>
-          <p className="lg:col-span-4 text-ink/65 leading-relaxed">
-            No stock photos. No filters. Just real moments from our farm and the Eastern Ghats.
+          <p className="lg:col-span-4 lg:pb-3 text-ivory/60 text-lg leading-relaxed">
+            No stock photos. Every picture here was taken on our farm or in the Eastern Ghats.
           </p>
         </motion.div>
 
-        {/* Category filters */}
-        <div className="flex flex-wrap gap-x-7 gap-y-2 border-b border-ink/12 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setActiveCategory(cat.key)}
-              className={`pb-4 -mb-px text-sm tracking-wide border-b-2 transition-colors duration-200 ${
-                activeCategory === cat.key ? 'border-ink text-ink' : 'border-transparent text-ink/45 hover:text-ink'
-              }`}
+        {/* Editorial grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 auto-rows-[150px] sm:auto-rows-[200px] lg:auto-rows-[230px] gap-2 md:gap-3">
+          {galleryItems.map((item, i) => (
+            <motion.button
+              key={item.id}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.05 * i, ease }}
+              onClick={() => setSelectedItem(item)}
+              className={`group relative overflow-hidden text-left ${item.span}`}
+              aria-label={`Open photo: ${item.title}`}
             >
-              {cat.label}
-            </button>
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
+                loading="lazy"
+              />
+              <span className="absolute left-0 bottom-0 bg-forest-deep px-4 py-2.5 text-[10px] uppercase tracking-[0.22em] text-ivory/85 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {item.title}
+              </span>
+            </motion.button>
           ))}
         </div>
-
-        {/* Grid */}
-        <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((item) => (
-              <motion.button
-                key={item.id}
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35, ease }}
-                onClick={() => setSelectedItem(item)}
-                className="group relative aspect-[4/5] overflow-hidden text-left"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/0 to-ink/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <p className="absolute left-4 bottom-4 right-4 text-paper text-sm font-medium opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                  {item.title}
-                </p>
-              </motion.button>
-            ))}
-          </AnimatePresence>
-        </motion.div>
       </div>
 
       {/* Lightbox */}
@@ -106,25 +82,34 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-ink/90 flex items-center justify-center p-6"
+            className="fixed inset-0 z-[60] bg-forest-deep/95 flex items-center justify-center p-6 md:p-12"
             onClick={() => setSelectedItem(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={selectedItem.title}
           >
-            <motion.div
+            <motion.figure
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
-              transition={{ duration: 0.3, ease }}
-              className="bg-paper max-w-lg w-full overflow-hidden"
+              transition={{ duration: 0.35, ease }}
+              className="max-w-5xl w-full"
               onClick={e => e.stopPropagation()}
             >
-              <img src={selectedItem.image} alt={selectedItem.title} className="w-full h-80 object-cover" />
-              <div className="p-7">
-                <span className="text-[11px] font-semibold text-green-deep uppercase tracking-[0.2em]">{selectedItem.category}</span>
-                <h3 className="font-[family-name:var(--font-heading)] text-2xl text-ink mt-2 mb-2 font-medium">{selectedItem.title}</h3>
-                <p className="text-ink/65 leading-relaxed">{selectedItem.desc}</p>
-                <button onClick={() => setSelectedItem(null)} className="mt-5 text-sm text-ink/50 hover:text-green-deep transition-colors">Close</button>
-              </div>
-            </motion.div>
+              <img src={selectedItem.image} alt={selectedItem.title} className="w-full max-h-[75vh] object-contain" />
+              <figcaption className="mt-6 flex items-start justify-between gap-6 text-ivory">
+                <div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl">{selectedItem.title}</h3>
+                  <p className="text-ivory/60 mt-2">{selectedItem.desc}</p>
+                </div>
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-ivory/60 hover:text-brass-light transition-colors border-b border-current pb-1"
+                >
+                  Close
+                </button>
+              </figcaption>
+            </motion.figure>
           </motion.div>
         )}
       </AnimatePresence>

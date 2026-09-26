@@ -9,11 +9,11 @@ export function LeafMark({ className = '' }) {
   )
 }
 
-/** Eyebrow label with a leaf — keeps section intros botanical and consistent. */
+/** Section label: a short brass rule followed by tracked small caps. */
 export function Eyebrow({ children, className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 text-xs uppercase tracking-[0.25em] ${className}`}>
-      <LeafMark className="w-3.5 h-3.5 shrink-0" />
+    <span className={`inline-flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.3em] ${className}`}>
+      <span className="block w-8 h-px bg-current opacity-70" aria-hidden="true" />
       {children}
     </span>
   )
