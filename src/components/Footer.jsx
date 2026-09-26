@@ -51,7 +51,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           <div>
-            <NimmuLogo className="h-14 w-auto text-ivory" />
+            <div className="flex items-center justify-center bg-leaf rounded-md w-24 h-24">
+              <NimmuLogo className="w-[88%] h-auto text-white" />
+            </div>
             <p className="text-ivory/55 leading-relaxed text-sm mt-5 max-w-xs">
               A 100% organic island farm in Konaseema, with treasures from the Eastern Ghats.
             </p>

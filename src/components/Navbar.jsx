@@ -46,8 +46,8 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className={`flex items-center justify-between transition-[height] duration-300 ${scrolled ? 'h-16 md:h-[4.5rem]' : 'h-20 md:h-24'}`}>
-          <a href="#hero" className="flex items-center" aria-label="Nimmu Naturals home">
-            <NimmuLogo className="h-10 md:h-12 w-auto text-ivory" />
+          <a href="#hero" className="flex items-center justify-center bg-leaf rounded-md w-14 h-14 md:w-16 md:h-16" aria-label="Nimmu Naturals home">
+            <NimmuLogo className="w-[88%] h-auto text-white" />
           </a>
 
           {/* Desktop */}
