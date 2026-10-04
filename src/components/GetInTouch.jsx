@@ -31,8 +31,8 @@ export default function GetInTouch() {
           className="max-w-3xl mb-16 md:mb-20"
         >
           <Eyebrow className="text-brass mb-8">Say hello</Eyebrow>
-          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.03em]">
-            Talk directly <span className="italic">to the farmer.</span>
+          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.015em]">
+            Talk directly to the farmer.
           </h2>
           <p className="mt-6 text-ink/65 text-lg leading-relaxed">
             No call center. No automated replies. Just real people who grow your food.
@@ -52,7 +52,7 @@ export default function GetInTouch() {
                 <div className="flex items-center gap-4">
                   <span className="text-brass group-hover:text-ink transition-colors">{c.icon}</span>
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-ink/45">{c.label}</p>
+                    <p className="text-sm text-ink/45">{c.label}</p>
                     <p className="font-[family-name:var(--font-heading)] text-2xl md:text-[1.75rem] text-ink mt-1 group-hover:text-brass transition-colors">{c.value}</p>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ export default function GetInTouch() {
 
           {/* Delivery + visit */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="bg-ivory p-8 md:p-10">
+            <div className="bg-ivory rounded-3xl p-8 md:p-10">
               <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-ink mb-6">Where we deliver</h3>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
@@ -84,13 +84,13 @@ export default function GetInTouch() {
               href={whatsappLink('Hi! I would like to visit the farm')}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block bg-ivory p-8 md:p-10 hover:bg-forest hover:text-ivory transition-colors duration-500"
+              className="group block bg-ivory rounded-3xl p-8 md:p-10 hover:bg-forest hover:text-ivory transition-colors duration-500"
             >
               <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-ink group-hover:text-ivory transition-colors duration-500">Visit our farm</h3>
               <p className="text-sm text-ink/55 group-hover:text-ivory/65 mt-3 leading-relaxed max-w-md transition-colors duration-500">
                 Walk the fields, meet the animals, taste the food. Small groups welcome.
               </p>
-              <span className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.18em] text-brass group-hover:text-brass-light mt-6 transition-colors duration-500">
+              <span className="inline-flex items-center gap-2 text-[15px] font-semibold text-brass group-hover:text-brass-light mt-6 transition-colors duration-500">
                 Book a farm visit
                 <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
               </span>
@@ -103,10 +103,10 @@ export default function GetInTouch() {
           initial={{ opacity: 0, y: 16 }}
           animate={show}
           transition={{ duration: 0.7, delay: 0.1, ease }}
-          className="mt-20 md:mt-24 bg-forest text-ivory p-8 md:p-14 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between"
+          className="mt-20 md:mt-24 bg-forest text-ivory rounded-3xl p-8 md:p-14 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between"
         >
           <div className="max-w-xl">
-            <h3 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl tracking-[-0.02em]">Join our <span className="italic text-brass-light">farm family</span></h3>
+            <h3 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl tracking-[-0.02em]">Join our <span className="text-brass-light">farm family</span></h3>
             <p className="text-ivory/65 mt-3 leading-relaxed">
               Weekly harvest updates, seasonal recipes, farm stories, and first access to fresh produce.
             </p>
@@ -115,7 +115,7 @@ export default function GetInTouch() {
             href={whatsappLink('Hi! I want to join the Nimmu Naturals community')}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 bg-brass-light text-forest px-7 py-4 text-[12px] font-medium uppercase tracking-[0.18em] hover:bg-ivory transition-colors duration-300"
+            className="shrink-0 inline-flex items-center gap-2 bg-brass-light text-forest px-7 py-4 rounded-xl text-[15px] font-semibold hover:bg-ivory transition-colors duration-300"
           >
             <WhatsAppIcon className="w-4 h-4" />
             Join the community

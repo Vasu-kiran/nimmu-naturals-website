@@ -40,8 +40,8 @@ export default function Gallery() {
         >
           <div className="lg:col-span-8">
             <Eyebrow className="text-brass-light mb-8">In pictures</Eyebrow>
-            <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em]">
-              See the <span className="italic text-brass-light">real farm.</span>
+            <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.015em]">
+              See the <span className="text-brass-light">real farm.</span>
             </h2>
           </div>
           <p className="lg:col-span-4 lg:pb-3 text-ivory/60 text-lg leading-relaxed">
@@ -58,7 +58,7 @@ export default function Gallery() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.05 * i, ease }}
               onClick={() => setSelectedItem(item)}
-              className={`group relative overflow-hidden text-left ${item.span}`}
+              className={`group relative overflow-hidden rounded-2xl text-left ${item.span}`}
               aria-label={`Open photo: ${item.title}`}
             >
               <img
@@ -67,7 +67,7 @@ export default function Gallery() {
                 className="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
                 loading="lazy"
               />
-              <span className="absolute left-0 bottom-0 bg-forest-deep px-4 py-2.5 text-[10px] uppercase tracking-[0.22em] text-ivory/85 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <span className="absolute left-3 bottom-3 bg-forest-deep/90 rounded-lg px-3 py-2 text-sm text-ivory/85 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {item.title}
               </span>
             </motion.button>
@@ -96,7 +96,7 @@ export default function Gallery() {
               className="max-w-5xl w-full"
               onClick={e => e.stopPropagation()}
             >
-              <img src={selectedItem.image} alt={selectedItem.title} className="w-full max-h-[75vh] object-contain" />
+              <img src={selectedItem.image} alt={selectedItem.title} className="w-full max-h-[75vh] object-contain rounded-2xl" />
               <figcaption className="mt-6 flex items-start justify-between gap-6 text-ivory">
                 <div>
                   <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl">{selectedItem.title}</h3>
@@ -104,7 +104,7 @@ export default function Gallery() {
                 </div>
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-ivory/60 hover:text-brass-light transition-colors border-b border-current pb-1"
+                  className="shrink-0 text-sm text-ivory/60 hover:text-brass-light transition-colors border-b border-current pb-1"
                 >
                   Close
                 </button>

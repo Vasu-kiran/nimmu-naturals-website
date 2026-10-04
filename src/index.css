@@ -25,8 +25,8 @@
   --color-brass-light: #D3B47E;
   --color-leaf: #5B8C3A; /* brand green — Instagram avatar / favicon */
 
-  --font-heading: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Source Serif 4', Georgia, serif;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
 }
 
 @layer base {
@@ -46,8 +46,8 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 300;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     font-optical-sizing: auto;
   }
 }

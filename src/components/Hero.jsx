@@ -13,15 +13,15 @@ export default function Hero() {
           transition={{ duration: 0.8, ease }}
           className="lg:col-span-7 flex flex-col justify-end px-6 md:px-10 lg:pl-[max(2.5rem,calc((100vw_-_80rem)/2_+_2.5rem))] lg:pr-16 pt-36 md:pt-44 pb-14 lg:pb-24"
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-brass-light mb-8">
+          <p className="text-sm text-brass-light mb-8">
             Gudapalli &nbsp;·&nbsp; Konaseema &nbsp;·&nbsp; Andhra Pradesh
           </p>
-          <h1 className="font-[family-name:var(--font-heading)] font-light text-[3.1rem] sm:text-7xl xl:text-[6.4rem] leading-[0.96] tracking-[-0.03em]">
+          <h1 className="font-[family-name:var(--font-heading)] text-[2.9rem] sm:text-6xl xl:text-[5.25rem] leading-[1.04] tracking-[-0.015em]">
             Organic food,
             <br />
             grown on a
             <br />
-            <span className="italic text-brass-light">river island.</span>
+            <span className="text-brass-light">river island.</span>
           </h1>
           <p className="mt-10 max-w-lg text-ivory/70 text-lg leading-relaxed">
             Nimmu Naturals farms a fully organic island on the river Godavari —
@@ -31,7 +31,7 @@ export default function Hero() {
           <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5">
             <a
               href="#products"
-              className="inline-flex items-center bg-brass-light text-forest px-8 py-4 text-[13px] font-medium uppercase tracking-[0.18em] hover:bg-ivory transition-colors duration-300"
+              className="inline-flex items-center bg-brass-light text-forest px-8 py-4 rounded-xl text-[15px] font-semibold hover:bg-ivory transition-colors duration-300"
             >
               See what we grow
             </a>
@@ -39,7 +39,7 @@ export default function Hero() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 text-[13px] uppercase tracking-[0.18em] text-ivory/85 hover:text-brass-light transition-colors duration-300"
+              className="group inline-flex items-center gap-3 text-[15px] text-ivory/85 hover:text-brass-light transition-colors duration-300"
             >
               Message the farmer
               <span className="block w-8 h-px bg-current transition-all duration-300 group-hover:w-12" aria-hidden="true" />
@@ -47,12 +47,12 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Image — runs to the right and bottom edges */}
+        {/* Image — inset with rounded corners */}
         <motion.figure
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.1, delay: 0.1, ease }}
-          className="lg:col-span-5 relative min-h-[70svh] lg:min-h-0"
+          className="lg:col-span-5 relative min-h-[70svh] lg:min-h-0 mx-4 mb-4 md:mx-6 md:mb-6 lg:ml-0 lg:mr-6 lg:mt-28 lg:mb-6 rounded-3xl overflow-hidden"
         >
           <img
             src="/images/turmeric.jpeg"
@@ -60,7 +60,7 @@ export default function Hero() {
             className="absolute inset-0 w-full h-full object-cover object-[50%_35%]"
             fetchpriority="high"
           />
-          <figcaption className="absolute left-0 bottom-0 bg-forest px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-ivory/70">
+          <figcaption className="absolute left-4 bottom-4 bg-forest/90 rounded-xl px-4 py-2.5 text-sm text-ivory/80">
             Fresh turmeric, just out of the ground
           </figcaption>
         </motion.figure>

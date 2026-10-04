@@ -53,7 +53,7 @@ function SourceColumn({ source, isInView, delay }) {
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay, ease }}
     >
-      <div className="overflow-hidden">
+      <div className="overflow-hidden rounded-3xl">
         <img
           src={source.image}
           alt={source.alt}
@@ -65,7 +65,7 @@ function SourceColumn({ source, isInView, delay }) {
         <h3 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl text-ink tracking-[-0.02em]">
           {source.label}
         </h3>
-        <span className="text-[11px] uppercase tracking-[0.22em] text-brass shrink-0 hidden sm:inline">{source.sublabel}</span>
+        <span className="text-sm text-brass shrink-0 hidden sm:inline">{source.sublabel}</span>
       </div>
       {source.intro && <p className="mt-4 text-ink/60 leading-relaxed max-w-lg">{source.intro}</p>}
 
@@ -76,7 +76,7 @@ function SourceColumn({ source, isInView, delay }) {
               <p className="font-[family-name:var(--font-heading)] text-xl md:text-[1.4rem] text-ink group-hover:text-brass transition-colors duration-300">
                 {item.name}
               </p>
-              <span className="text-[10px] uppercase tracking-[0.22em] text-ink/40 shrink-0">{item.tag}</span>
+              <span className="text-sm text-ink/40 shrink-0">{item.tag}</span>
             </div>
             <p className="text-sm text-ink/55 leading-relaxed mt-1.5">{item.desc}</p>
           </li>
@@ -102,9 +102,9 @@ export default function Products() {
         >
           <div className="lg:col-span-8">
             <Eyebrow className="text-brass mb-8">The harvest</Eyebrow>
-            <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.03em]">
+            <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.015em]">
               What we grow,
-              <br /> <span className="italic">and what we gather.</span>
+              <br /> and what we gather.
             </h2>
           </div>
           <p className="lg:col-span-4 lg:pb-3 text-ink/65 text-lg leading-relaxed">
@@ -121,19 +121,19 @@ export default function Products() {
         </div>
 
         {/* In season now */}
-        <div className="mt-24 md:mt-32 bg-forest text-ivory grid lg:grid-cols-12">
+        <div className="mt-24 md:mt-32 bg-forest text-ivory rounded-3xl overflow-hidden grid lg:grid-cols-12">
           <div className="lg:col-span-5 p-8 md:p-12 lg:border-r border-ivory/10">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-brass-light">In season now</p>
+            <p className="text-sm text-brass-light">In season now</p>
             <p className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl mt-5 tracking-[-0.02em]">
               {season.name}
             </p>
-            <p className="font-[family-name:var(--font-heading)] italic text-ivory/55 text-xl mt-2">{season.months}</p>
+            <p className="font-[family-name:var(--font-heading)] text-ivory/55 text-xl mt-2">{season.months}</p>
           </div>
           <div className="lg:col-span-7 p-8 md:p-12 pt-0 md:pt-0 lg:pt-12 flex flex-col justify-between gap-10">
             <ul className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4">
               {season.items.map((item) => (
                 <li key={item} className="text-ivory/80 flex items-center gap-3">
-                  <span className="w-1 h-1 bg-brass-light shrink-0" aria-hidden="true" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-brass-light shrink-0" aria-hidden="true" />
                   {item}
                 </li>
               ))}
@@ -144,7 +144,7 @@ export default function Products() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center justify-center bg-brass-light text-forest px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.18em] hover:bg-ivory transition-colors duration-300"
+                className="shrink-0 inline-flex items-center justify-center bg-brass-light text-forest px-6 py-3.5 rounded-xl text-[15px] font-semibold hover:bg-ivory transition-colors duration-300"
               >
                 Ask what&rsquo;s fresh today
               </a>

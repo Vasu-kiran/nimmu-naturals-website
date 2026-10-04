@@ -9,12 +9,11 @@ export function LeafMark({ className = '' }) {
   )
 }
 
-/** Section label: a short brass rule followed by tracked small caps. */
+/** Section label: a short plain line of text above a heading. */
 export function Eyebrow({ children, className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.3em] ${className}`}>
-      <span className="block w-8 h-px bg-current opacity-70" aria-hidden="true" />
+    <p className={`text-base font-semibold ${className}`}>
       {children}
-    </span>
+    </p>
   )
 }

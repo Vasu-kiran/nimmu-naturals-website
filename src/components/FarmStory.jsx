@@ -18,10 +18,10 @@ export default function FarmStory() {
           <img
             src="/images/cow-grazing.jpeg"
             alt="Standing with one of the farm's cows in the island pasture"
-            className="w-full aspect-[4/5] object-cover"
+            className="w-full aspect-[4/5] object-cover rounded-3xl"
             loading="lazy"
           />
-          <figcaption className="mt-4 text-[11px] uppercase tracking-[0.22em] text-ivory/45">
+          <figcaption className="mt-4 text-sm text-ivory/45">
             On the island, Gudapalli
           </figcaption>
         </motion.figure>
@@ -33,9 +33,9 @@ export default function FarmStory() {
           className="lg:col-span-7 order-1 lg:order-2"
         >
           <Eyebrow className="text-brass-light mb-8">Our story</Eyebrow>
-          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.03em]">
+          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.015em]">
             I watched my village
-            <br /> <span className="italic text-brass-light">fall ill.</span>
+            <br /> <span className="text-brass-light">fall ill.</span>
           </h2>
           <div className="mt-10 space-y-6 text-ivory/70 text-[1.05rem] leading-[1.8] max-w-xl">
             <p>
@@ -56,7 +56,7 @@ export default function FarmStory() {
               farmers in the Eastern Ghats.
             </p>
           </div>
-          <p className="mt-10 pt-6 border-t border-ivory/15 max-w-xl text-[11px] uppercase tracking-[0.25em] text-ivory/45">
+          <p className="mt-10 pt-6 border-t border-ivory/15 max-w-xl text-sm text-ivory/45">
             The founder, Nimmu Naturals
           </p>
         </motion.div>

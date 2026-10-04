@@ -23,8 +23,8 @@ export default function RiverIsland() {
       >
         <div className="lg:col-span-8">
           <Eyebrow className="text-brass mb-8">The farm</Eyebrow>
-          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.03em]">
-            An organic farm on an island in the <span className="italic">river Godavari.</span>
+          <h2 className="font-[family-name:var(--font-heading)] text-[2.6rem] md:text-6xl lg:text-7xl text-ink leading-[1.02] tracking-[-0.015em]">
+            An organic farm on an island in the river Godavari.
           </h2>
         </div>
         <div className="lg:col-span-4 lg:pb-3">
@@ -35,20 +35,20 @@ export default function RiverIsland() {
         </div>
       </motion.div>
 
-      {/* Full-bleed image */}
+      {/* Wide image */}
       <motion.figure
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 1, ease }}
-        className="mt-16 md:mt-24"
+        className="mt-16 md:mt-24 max-w-7xl mx-auto px-4 md:px-10"
       >
         <img
           src="/images/godavari-river.jpg"
           alt="The river Godavari surrounding the island farm"
-          className="w-full h-[55vh] md:h-[88vh] object-cover"
+          className="w-full h-[55vh] md:h-[80vh] object-cover rounded-3xl"
           loading="lazy"
         />
-        <figcaption className="max-w-7xl mx-auto px-6 md:px-10 mt-4 flex justify-between text-[11px] uppercase tracking-[0.22em] text-ink/45">
+        <figcaption className="px-2 mt-4 flex justify-between text-sm text-ink/45">
           <span>The Godavari wraps the land on every side</span>
           <span className="hidden sm:inline">Konaseema</span>
         </figcaption>
@@ -57,10 +57,9 @@ export default function RiverIsland() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Features */}
         <div className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-12 lg:gap-x-20">
-          {islandFeatures.map((item, i) => (
+          {islandFeatures.map((item) => (
             <div key={item.title} className="border-t border-ink/15 pt-8">
-              <span className="font-[family-name:var(--font-heading)] italic text-brass text-lg">0{i + 1}</span>
-              <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-[1.75rem] text-ink mt-4">{item.title}</h3>
+              <h3 className="font-[family-name:var(--font-heading)] text-2xl md:text-[1.75rem] text-ink">{item.title}</h3>
               <p className="text-ink/60 leading-relaxed mt-3">{item.desc}</p>
             </div>
           ))}
